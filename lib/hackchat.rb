@@ -1,14 +1,13 @@
+require 'faraday'
+require 'json'
+require 'hashie'
+require_relative 'hackchat/permission'
+require_relative 'hackchat/user'
+
 class HackChat
-  require 'faraday'
-  require 'json'
-  require 'hashie'
-  require_relative 'hackchat/permission'
 
   include Permission
-
-  def connect
-    @connect ||= Faraday.new :url => "http://localhost:3000/"
-  end
+  include User
 
   def initialize(token)
     @token = token
